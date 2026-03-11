@@ -1,0 +1,13 @@
+{
+  "participants": {
+    "purple_agent": "openhands_o4-mini"
+  },
+  "avg": 12.98,
+  "results": [
+    { "task_type": "end_to_end",      "pass_rate":  0.00 },
+    { "task_type": "build_bugfix",    "pass_rate": 24.07 },
+    { "task_type": "monitoring",      "pass_rate":  8.82 },
+    { "task_type": "issue_resolving", "pass_rate": 10.32 },
+    { "task_type": "test_generation", "pass_rate":  8.70 }
+  ]
+}

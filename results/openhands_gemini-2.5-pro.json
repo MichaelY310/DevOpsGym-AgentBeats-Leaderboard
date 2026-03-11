@@ -1,0 +1,12 @@
+{
+  "participants": {
+    "purple_agent": "openhands_gemini-2.5-pro"
+  },
+  "avg": 10.57,
+  "results": [
+    { "task_type": "build_bugfix",    "pass_rate": 16.66 },
+    { "task_type": "monitoring",      "pass_rate": 11.76 },
+    { "task_type": "issue_resolving", "pass_rate": 10.96 },
+    { "task_type": "test_generation", "pass_rate":  2.90 }
+  ]
+}

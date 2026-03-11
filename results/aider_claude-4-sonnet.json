@@ -1,0 +1,12 @@
+{
+  "participants": {
+    "purple_agent": "aider_claude-4-sonnet"
+  },
+  "avg": 4.37,
+  "results": [
+    { "task_type": "build_bugfix",    "pass_rate":  5.55 },
+    { "task_type": "monitoring",      "pass_rate":  0.00 },
+    { "task_type": "issue_resolving", "pass_rate":  9.67 },
+    { "task_type": "test_generation", "pass_rate":  2.25 }
+  ]
+}
