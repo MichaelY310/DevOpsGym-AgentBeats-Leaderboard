@@ -4,7 +4,6 @@
   },
   "avg": 20.99,
   "results": [
-    { "task_type": "end_to_end",      "pass_rate":  0.00 },
     { "task_type": "build_bugfix",    "pass_rate": 42.59 },
     { "task_type": "monitoring",      "pass_rate":  5.89 },
     { "task_type": "issue_resolving", "pass_rate": 23.87 },
