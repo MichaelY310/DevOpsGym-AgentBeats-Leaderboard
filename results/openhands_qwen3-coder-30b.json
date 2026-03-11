@@ -1,6 +1,6 @@
 {
   "participants": {
-    "purple_agent": "openhands_qwen3-coder-30b"
+    "agent": "openhands_qwen3-coder-30b"
   },
   "avg": 11.40,
   "results": [

@@ -1,6 +1,6 @@
 {
   "participants": {
-    "purple_agent": "openhands_o4-mini"
+    "agent": "openhands_o4-mini"
   },
   "avg": 12.98,
   "results": [

@@ -1,6 +1,6 @@
 {
   "participants": {
-    "purple_agent": "mini-swe-agent_claude-4-sonnet"
+    "agent": "mini-swe-agent_claude-4-sonnet"
   },
   "avg": 9.67,
   "results": [

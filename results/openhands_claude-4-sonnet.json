@@ -1,6 +1,6 @@
 {
   "participants": {
-    "purple_agent": "openhands_claude-4-sonnet"
+    "agent": "openhands_claude-4-sonnet"
   },
   "avg": 20.99,
   "results": [

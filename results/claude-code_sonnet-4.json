@@ -1,6 +1,6 @@
 {
   "participants": {
-    "purple_agent": "claude-code_claude-4-sonnet"
+    "agent": "claude-code_claude-4-sonnet"
   },
   "avg": 27.54,
   "results": [

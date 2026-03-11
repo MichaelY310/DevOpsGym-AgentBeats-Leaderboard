@@ -1,6 +1,6 @@
 {
   "participants": {
-    "purple_agent": "openhands_gemini-2.5-pro"
+    "agent": "openhands_gemini-2.5-pro"
   },
   "avg": 10.57,
   "results": [

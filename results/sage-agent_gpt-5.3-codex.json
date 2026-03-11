@@ -1,6 +1,6 @@
 {
   "participants": {
-    "purple_agent": "sage-agent_gpt-5.3-codex"
+    "agent": "sage-agent_gpt-5.3-codex"
   },
   "avg": 46.81,
   "results": [
