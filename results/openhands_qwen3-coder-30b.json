@@ -1,25 +1,16 @@
 {
+  "id": "019ce9e0-a976-7882-b78f-3cd2e827f3af",
   "participants": {
-    "agent": "openhands_qwen3-coder-30b"
+    "purple_agent": "openhands_qwen3-coder-30b"
   },
-  "avg": 11.4,
   "results": [
     {
-      "task_type": "build_bugfix",
-      "pass_rate": 20.37
-    },
-    {
-      "task_type": "monitoring",
-      "pass_rate": 5.89
-    },
-    {
-      "task_type": "issue_resolving",
-      "pass_rate": 13.22
-    },
-    {
-      "task_type": "test_generation",
-      "pass_rate": 6.13
+      "build_bugfix": 20.37,
+      "monitoring": 5.89,
+      "issue_resolving": 13.22,
+      "test_generation": 6.13,
+      "avg": 11.4,
+      "end_to_end": null
     }
-  ],
-  "id": "019ce9e0-a976-7882-b78f-3cd2e827f3af"
+  ]
 }
