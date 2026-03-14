@@ -1,12 +1,17 @@
 {
   "participants": {
-    "agent": "sage-agent_gpt-5.3-codex"
+    "purple_agent": "sage-agent_gpt-5.3-codex"
   },
-  "avg": 46.81,
   "results": [
-    { "task_type": "build_bugfix",    "pass_rate": 81.82 },
-    { "task_type": "monitoring",      "pass_rate": 35.29 },
-    { "task_type": "issue_resolving", "pass_rate": 32.14 },
-    { "task_type": "test_generation", "pass_rate": 37.99 }
+    {
+      "success_rate": 0.4681,
+      "total_tasks": 700,
+      "task_breakdown": [
+        { "task_type": "build_bugfix",    "pass_rate": 81.82 },
+        { "task_type": "monitoring",      "pass_rate": 35.29 },
+        { "task_type": "issue_resolving", "pass_rate": 32.14 },
+        { "task_type": "test_generation", "pass_rate": 37.99 }
+      ]
+    }
   ]
 }

@@ -1,12 +1,17 @@
 {
   "participants": {
-    "agent": "openhands_o4-mini"
+    "purple_agent": "openhands_o4-mini"
   },
-  "avg": 12.98,
   "results": [
-    { "task_type": "build_bugfix",    "pass_rate": 24.07 },
-    { "task_type": "monitoring",      "pass_rate":  8.82 },
-    { "task_type": "issue_resolving", "pass_rate": 10.32 },
-    { "task_type": "test_generation", "pass_rate":  8.70 }
+    {
+      "success_rate": 0.1298,
+      "total_tasks": 700,
+      "task_breakdown": [
+        { "task_type": "build_bugfix",    "pass_rate": 24.07 },
+        { "task_type": "monitoring",      "pass_rate":  8.82 },
+        { "task_type": "issue_resolving", "pass_rate": 10.32 },
+        { "task_type": "test_generation", "pass_rate":  8.70 }
+      ]
+    }
   ]
 }

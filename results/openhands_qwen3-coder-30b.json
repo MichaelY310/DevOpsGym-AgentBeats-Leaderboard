@@ -1,12 +1,17 @@
 {
   "participants": {
-    "agent": "openhands_qwen3-coder-30b"
+    "purple_agent": "openhands_qwen3-coder-30b"
   },
-  "avg": 11.40,
   "results": [
-    { "task_type": "build_bugfix",    "pass_rate": 20.37 },
-    { "task_type": "monitoring",      "pass_rate":  5.89 },
-    { "task_type": "issue_resolving", "pass_rate": 13.22 },
-    { "task_type": "test_generation", "pass_rate":  6.13 }
+    {
+      "success_rate": 0.1140,
+      "total_tasks": 700,
+      "task_breakdown": [
+        { "task_type": "build_bugfix",    "pass_rate": 20.37 },
+        { "task_type": "monitoring",      "pass_rate":  5.89 },
+        { "task_type": "issue_resolving", "pass_rate": 13.22 },
+        { "task_type": "test_generation", "pass_rate":  6.13 }
+      ]
+    }
   ]
 }

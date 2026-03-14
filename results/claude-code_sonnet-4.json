@@ -1,12 +1,17 @@
 {
   "participants": {
-    "agent": "claude-code_claude-4-sonnet"
+    "purple_agent": "claude-code_claude-4-sonnet"
   },
-  "avg": 27.54,
   "results": [
-    { "task_type": "build_bugfix",    "pass_rate": 51.85 },
-    { "task_type": "monitoring",      "pass_rate": 20.56 },
-    { "task_type": "issue_resolving", "pass_rate": 23.87 },
-    { "task_type": "test_generation", "pass_rate": 13.87 }
+    {
+      "success_rate": 0.2754,
+      "total_tasks": 700,
+      "task_breakdown": [
+        { "task_type": "build_bugfix",    "pass_rate": 51.85 },
+        { "task_type": "monitoring",      "pass_rate": 20.56 },
+        { "task_type": "issue_resolving", "pass_rate": 23.87 },
+        { "task_type": "test_generation", "pass_rate": 13.87 }
+      ]
+    }
   ]
 }
