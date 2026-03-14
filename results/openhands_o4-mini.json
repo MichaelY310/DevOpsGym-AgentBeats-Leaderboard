@@ -1,11 +1,25 @@
 {
-  "participants": { "purple_agent": "openhands_o4-mini" },
-  "results": [{
-    "build_bugfix":    24.07,
-    "monitoring":       8.82,
-    "issue_resolving": 10.32,
-    "test_generation":  8.70,
-    "avg":             12.98,
-    "end_to_end":       0.00
-  }]
+  "participants": {
+    "agent": "openhands_o4-mini"
+  },
+  "avg": 12.98,
+  "results": [
+    {
+      "task_type": "build_bugfix",
+      "pass_rate": 24.07
+    },
+    {
+      "task_type": "monitoring",
+      "pass_rate": 8.82
+    },
+    {
+      "task_type": "issue_resolving",
+      "pass_rate": 10.32
+    },
+    {
+      "task_type": "test_generation",
+      "pass_rate": 8.7
+    }
+  ],
+  "id": "019ce9e0-a976-7882-b78f-3cd2e827f3af"
 }

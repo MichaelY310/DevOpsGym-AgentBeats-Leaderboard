@@ -36,7 +36,14 @@ def fetch_agent_info(agentbeats_id: str) -> dict:
     try:
         response = requests.get(url, timeout=30)
         response.raise_for_status()
-        return response.json()
+        info = response.json()
+
+        # If docker_image is null, fall back to parsing it from the amber manifest
+        if not info.get("docker_image") and info.get("amber_manifest_url"):
+            print(f"docker_image is null, parsing from manifest: {info['amber_manifest_url']}")
+            info["docker_image"] = fetch_image_from_manifest(info["amber_manifest_url"])
+
+        return info
     except requests.exceptions.HTTPError as e:
         print(f"Error: Failed to fetch agent {agentbeats_id}: {e}")
         sys.exit(1)
@@ -45,6 +52,26 @@ def fetch_agent_info(agentbeats_id: str) -> dict:
         sys.exit(1)
     except requests.exceptions.RequestException as e:
         print(f"Error: Request failed for agent {agentbeats_id}: {e}")
+        sys.exit(1)
+
+
+def fetch_image_from_manifest(manifest_url: str) -> str:
+    """Parse docker image from an Amber manifest JSON5 URL."""
+    import re
+    try:
+        response = requests.get(manifest_url, timeout=30)
+        response.raise_for_status()
+        # Strip comments and parse the image field with regex (JSON5 has comments)
+        text = response.text
+        match = re.search(r'"?image"?\s*:\s*"([^"]+)"', text)
+        if match:
+            image = match.group(1)
+            print(f"Parsed image from manifest: {image}")
+            return image
+        print(f"Error: Could not find image field in manifest: {manifest_url}")
+        sys.exit(1)
+    except requests.exceptions.RequestException as e:
+        print(f"Error: Failed to fetch manifest {manifest_url}: {e}")
         sys.exit(1)
 
 
@@ -62,6 +89,7 @@ services:
     image: {green_image}
     platform: linux/amd64
     container_name: green-agent
+    user: root
     command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url", "http://green-agent:{green_port}"]
     environment:{green_env}
     volumes:
@@ -99,8 +127,11 @@ PARTICIPANT_TEMPLATE = """  {name}:
     image: {image}
     platform: linux/amd64
     container_name: {name}
+    user: root
     command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://{name}:{port}"]
     environment:{env}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:{port}/.well-known/agent-card.json"]
       interval: 5s
