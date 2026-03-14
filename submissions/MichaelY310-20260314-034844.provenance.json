@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "ghcr.io/kaijiezhu11/green-agent@sha256:ecacf1573861078acc86bfec872bb233b8f65ad408ba9b59caf6611cca5e9b7c",
+    "purple_agent": "ghcr.io/kaijiezhu11/devops-claude-agent@sha256:169b71bb22b8406a89d1b2e67c343e0380d87dd9c83e7e391e83ab7621690be4",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-03-14T03:48:44Z",
+  "github_actions": {
+    "run_url": "https://github.com/MichaelY310/DevOpsGym-AgentBeats-Leaderboard/actions/runs/23079689546",
+    "run_logs_url": "https://api.github.com/repos/MichaelY310/DevOpsGym-AgentBeats-Leaderboard/actions/runs/23079689546/logs",
+    "ref": "refs/heads/run-scenario-test",
+    "sha": "397eae438b654dfffd264768e0b59931ab3a736d",
+    "repository_url": "https://github.com/MichaelY310/DevOpsGym-AgentBeats-Leaderboard",
+    "workflow_ref": "MichaelY310/DevOpsGym-AgentBeats-Leaderboard/.github/workflows/run-scenario.yml@refs/heads/run-scenario-test",
+    "workflow_sha": "397eae438b654dfffd264768e0b59931ab3a736d"
+  }
+}

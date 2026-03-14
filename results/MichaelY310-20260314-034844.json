@@ -1,0 +1,32 @@
+{
+  "participants": {
+    "purple_agent": "019ce9e0-a976-7882-b78f-3cd2e827f3af"
+  },
+  "results": [
+    {
+      "total_tasks": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0,
+      "purple_agent_url": "http://purple_agent:9009/",
+      "task_type": null,
+      "results": [
+        {
+          "success": false,
+          "agent_duration": 0.11701035499572754,
+          "test_duration": 0,
+          "total_duration": 0.11701035499572754,
+          "agent_timeout": false,
+          "test_timeout": false,
+          "test_exit_code": -1,
+          "test_output": "",
+          "purple_agent_response": "\ud83d\ude80 Claude Code Purple Agent - Task: issue_resolving/containerd__containerd-4978\n\n\u274c Failed to write setup script: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?\n\n<status>error</status>",
+          "ssh_command": "ssh -p 32768 root@localhost",
+          "parser_name": "swebench",
+          "error": "Purple agent did not complete (status: error)",
+          "task_identifier": "issue_resolving/containerd__containerd-4978"
+        }
+      ]
+    }
+  ]
+}
