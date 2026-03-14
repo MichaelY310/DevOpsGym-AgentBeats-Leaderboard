@@ -1,17 +1,11 @@
 {
-  "participants": {
-    "purple_agent": "aider_claude-4-sonnet"
-  },
-  "results": [
-    {
-      "success_rate": 0.0437,
-      "total_tasks": 700,
-      "task_breakdown": [
-        { "task_type": "build_bugfix",    "pass_rate":  5.55 },
-        { "task_type": "monitoring",      "pass_rate":  0.00 },
-        { "task_type": "issue_resolving", "pass_rate":  9.67 },
-        { "task_type": "test_generation", "pass_rate":  2.25 }
-      ]
-    }
-  ]
+  "participants": { "purple_agent": "aider_claude-4-sonnet" },
+  "results": [{
+    "build_bugfix":     5.55,
+    "monitoring":       0.00,
+    "issue_resolving":  9.67,
+    "test_generation":  2.25,
+    "avg":              4.37,
+    "end_to_end":       null
+  }]
 }

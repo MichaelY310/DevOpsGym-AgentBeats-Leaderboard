@@ -1,17 +1,11 @@
 {
-  "participants": {
-    "purple_agent": "openhands_deepseek-v3.1"
-  },
-  "results": [
-    {
-      "success_rate": 0.0713,
-      "total_tasks": 700,
-      "task_breakdown": [
-        { "task_type": "build_bugfix",    "pass_rate": 11.11 },
-        { "task_type": "monitoring",      "pass_rate":  0.00 },
-        { "task_type": "issue_resolving", "pass_rate": 14.20 },
-        { "task_type": "test_generation", "pass_rate":  3.22 }
-      ]
-    }
-  ]
+  "participants": { "purple_agent": "openhands_deepseek-v3.1" },
+  "results": [{
+    "build_bugfix":    11.11,
+    "monitoring":       0.00,
+    "issue_resolving": 14.20,
+    "test_generation":  3.22,
+    "avg":              7.13,
+    "end_to_end":       null
+  }]
 }
