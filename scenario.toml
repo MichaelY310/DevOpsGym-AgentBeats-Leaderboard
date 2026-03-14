@@ -1,6 +1,5 @@
 [green_agent]
 agentbeats_id = "019c17a2-82ec-7272-93cd-54082c74bfcd"
-image = "ghcr.io/kaijiezhu11/green-agent:latest"
 env = {}
 
 [[participants]]
