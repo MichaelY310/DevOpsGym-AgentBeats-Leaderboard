@@ -89,6 +89,7 @@ services:
     image: {green_image}
     platform: linux/amd64
     container_name: green-agent
+    user: root
     command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url", "http://green-agent:{green_port}"]
     environment:{green_env}
     volumes:
