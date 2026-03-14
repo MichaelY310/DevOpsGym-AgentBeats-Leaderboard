@@ -1,0 +1,97 @@
+{
+  "manifest_version": "0.1.0",
+  "config_schema": {
+    "type": "object",
+    "properties": {
+      "green_force_reclone": {
+        "type": "boolean",
+        "description": "Force re-clone the dataset from GitHub"
+      },
+      "green_output_dir": {
+        "type": "string",
+        "description": "Directory to save detailed results (default: /home/agent/results)"
+      },
+      "green_task_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific task IDs to run, e.g. [\"issue_resolving/containerd__containerd-4978\"]"
+      },
+      "green_task_type": {
+        "type": "string",
+        "description": "Filter tasks by type: issue_resolving | build | end_to_end | monitor | test_generation"
+      },
+      "purple_agent_anthropic_api_key": {
+        "type": "string",
+        "secret": true,
+        "description": "Anthropic API key for Claude"
+      },
+      "purple_agent_model": {
+        "type": "string",
+        "default": "claude-opus-4-5",
+        "description": "Claude model to use (e.g. claude-opus-4-5, claude-sonnet-4-5, claude-haiku-3-5)"
+      }
+    },
+    "required": [
+      "purple_agent_anthropic_api_key"
+    ],
+    "additionalProperties": false
+  },
+  "components": {
+    "gateway": {
+      "manifest": "https://raw.githubusercontent.com/RDI-Foundation/agentbeats-gateway/refs/heads/main/amber-manifest.json5",
+      "config": {
+        "assessment_config": {},
+        "participant_roles": {
+          "green": "green",
+          "purple1": "purple_agent"
+        },
+        "callback_urls": {
+          "green": "${bindings.green-proxy.url}"
+        }
+      }
+    },
+    "green": {
+      "manifest": "https://raw.githubusercontent.com/kaijiezhu11/devops-green-agent/main/amber/amber-manifest-green.json5",
+      "config": {
+        "force_reclone": "${config.green_force_reclone}",
+        "output_dir": "${config.green_output_dir}",
+        "task_ids": "${config.green_task_ids}",
+        "task_type": "${config.green_task_type}"
+      }
+    },
+    "purple_agent": {
+      "manifest": "https://raw.githubusercontent.com/kaijiezhu11/devops-green-agent/main/amber/amber-manifest-claude-code.json5",
+      "config": {
+        "anthropic_api_key": "${config.purple_agent_anthropic_api_key}",
+        "model": "${config.purple_agent_model}"
+      }
+    }
+  },
+  "bindings": [
+    {
+      "to": "#gateway.green",
+      "from": "#green.a2a"
+    },
+    {
+      "to": "#gateway.purple1",
+      "from": "#purple_agent.a2a"
+    },
+    {
+      "to": "#green.purple_agent",
+      "from": "#gateway.proxy",
+      "weak": true,
+      "name": "green-proxy"
+    }
+  ],
+  "exports": {
+    "results": "#gateway.results"
+  },
+  "metadata": {
+    "agentbeats_ids": {
+      "green": "019c17a2-82ec-7272-93cd-54082c74bfcd",
+      "purple_agent": "019ce9e0-a976-7882-b78f-3cd2e827f3af"
+    }
+  }
+}
