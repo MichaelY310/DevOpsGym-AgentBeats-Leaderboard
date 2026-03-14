@@ -1,12 +1,13 @@
 [green_agent]
 agentbeats_id = "019c17a2-82ec-7272-93cd-54082c74bfcd"
+image = "ghcr.io/kaijiezhu11/green-agent:latest"
 env = {}
 
 [[participants]]
-agentbeats_id = ""   # TODO: paste your purple agent AgentBeats ID here (Copy agent ID from Edit Agent page)
+agentbeats_id = "019ce9e0-a976-7882-b78f-3cd2e827f3af"
 name = "purple_agent"
 env = { ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}" }
 
 [config]
-task_type = "issue_resolving"
+task_ids = ["issue_resolving/containerd__containerd-4978"]
 output_dir = "/home/agent/results"
