@@ -4,9 +4,22 @@
   },
   "avg": 9.67,
   "results": [
-    { "task_type": "build_bugfix",    "pass_rate": 29.62 },
-    { "task_type": "monitoring",      "pass_rate":  2.91 },
-    { "task_type": "issue_resolving", "pass_rate":  5.16 },
-    { "task_type": "test_generation", "pass_rate":  0.98 }
-  ]
+    {
+      "task_type": "build_bugfix",
+      "pass_rate": 29.62
+    },
+    {
+      "task_type": "monitoring",
+      "pass_rate": 2.91
+    },
+    {
+      "task_type": "issue_resolving",
+      "pass_rate": 5.16
+    },
+    {
+      "task_type": "test_generation",
+      "pass_rate": 0.98
+    }
+  ],
+  "id": "019ce9e0-a976-7882-b78f-3cd2e827f3af"
 }
