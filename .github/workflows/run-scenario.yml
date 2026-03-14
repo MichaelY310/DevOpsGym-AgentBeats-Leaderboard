@@ -84,6 +84,33 @@ jobs:
           echo "unique_name=$UNIQUE_NAME" >> $GITHUB_OUTPUT
           echo "branch_name=submission-${UNIQUE_NAME}" >> $GITHUB_OUTPUT
 
+      - name: Transform results to leaderboard format
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+          with open("output/results.json") as f:
+              raw = json.load(f)
+          agent_id = raw.get("participants", {}).get("purple_agent", "unknown")
+          runs = raw.get("results", [])
+          end_to_end = None
+          if runs:
+              end_to_end = round(runs[0].get("success_rate", 0) * 100, 2)
+          out = {
+              "participants": {"purple_agent": agent_id},
+              "results": [{
+                  "build_bugfix":    None,
+                  "monitoring":      None,
+                  "issue_resolving": None,
+                  "test_generation": None,
+                  "avg":             None,
+                  "end_to_end":      end_to_end
+              }]
+          }
+          with open("output/results.json", "w") as f:
+              json.dump(out, f, indent=2)
+          print(f"Transformed: agent={agent_id}, end_to_end={end_to_end}%")
+          EOF
+
       - name: Copy files to submission directory
         run: |
           cp scenario.toml submissions/${{ steps.metadata.outputs.unique_name }}.toml
