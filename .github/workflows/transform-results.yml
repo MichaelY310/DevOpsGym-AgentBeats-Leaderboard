@@ -1,0 +1,94 @@
+name: Transform Quick Submit Results
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'results/*.json'
+
+jobs:
+  transform:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Transform Quick Submit results to canonical format
+        run: |
+          python3 - <<'PYEOF'
+          import json, glob, os
+
+          def get_task_type(task_identifier):
+              prefix = task_identifier.split('/')[0]
+              return {
+                  'build': 'build_bugfix',
+                  'issue_resolving': 'issue_resolving',
+                  'monitor': 'monitoring',
+                  'test_generation': 'test_generation'
+              }.get(prefix)
+
+          changed = []
+          for path in sorted(glob.glob('results/*.json')):
+              with open(path) as f:
+                  data = json.load(f)
+
+              if 'status' not in data:
+                  continue  # Already canonical format
+
+              print(f"Transforming {path}...")
+              participants = data.get('participants', {})
+              purple_agent_id = participants.get('purple_agent', '')
+              overall = data.get('results', [{}])[0]
+              task_results = overall.get('results', [])
+
+              type_totals = {}
+              type_passed = {}
+              for task in task_results:
+                  t = get_task_type(task.get('task_identifier', ''))
+                  if t:
+                      type_totals[t] = type_totals.get(t, 0) + 1
+                      if task.get('success', False):
+                          type_passed[t] = type_passed.get(t, 0) + 1
+
+              metrics = {}
+              for t in ['build_bugfix', 'monitoring', 'issue_resolving', 'test_generation']:
+                  if type_totals.get(t, 0) > 0:
+                      metrics[t] = round(type_passed.get(t, 0) / type_totals[t] * 100, 2)
+                  else:
+                      metrics[t] = None
+
+              values = [v for v in metrics.values() if v is not None]
+              avg = round(sum(values) / len(values), 2) if values else None
+              end_to_end = round(overall.get('success_rate', 0) * 100, 2)
+
+              canonical = {
+                  "id": purple_agent_id,
+                  "participants": {"purple_agent": purple_agent_id},
+                  "results": [{
+                      "build_bugfix": metrics.get('build_bugfix'),
+                      "monitoring": metrics.get('monitoring'),
+                      "issue_resolving": metrics.get('issue_resolving'),
+                      "test_generation": metrics.get('test_generation'),
+                      "avg": avg,
+                      "end_to_end": end_to_end
+                  }]
+              }
+
+              with open(path, 'w') as f:
+                  json.dump(canonical, f, indent=2)
+
+              changed.append(path)
+              print(f"  avg={avg}, end_to_end={end_to_end}")
+              for t, total in type_totals.items():
+                  print(f"  {t}: {type_passed.get(t,0)}/{total} = {metrics.get(t)}%")
+
+          print(f"Transformed {len(changed)} file(s): {changed}")
+          PYEOF
+
+      - name: Commit transformed results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/*.json
+          git diff --staged --quiet || (git commit -m "transform: convert Quick Submit results to canonical format" && git push)
