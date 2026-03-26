@@ -90,5 +90,8 @@
       "green": "019cee02-a479-7653-b29a-a6e6ac8bfcfa",
       "purple_agent": "019ce9e0-a976-7882-b78f-3cd2e827f3af"
     }
-  }
+  },
+  "experimental_features": [
+    "docker"
+  ]
 }
