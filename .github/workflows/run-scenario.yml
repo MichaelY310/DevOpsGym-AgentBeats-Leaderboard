@@ -84,6 +84,9 @@ jobs:
           echo "unique_name=$UNIQUE_NAME" >> $GITHUB_OUTPUT
           echo "branch_name=submission-${UNIQUE_NAME}" >> $GITHUB_OUTPUT
 
+      - name: Fix output directory permissions
+        run: sudo chmod -R 777 output/
+
       - name: Transform results to leaderboard format
         run: |
           python3 - <<'EOF'
@@ -96,6 +99,7 @@ jobs:
           if runs:
               end_to_end = round(runs[0].get("success_rate", 0) * 100, 2)
           out = {
+              "id": agent_id,
               "participants": {"purple_agent": agent_id},
               "results": [{
                   "build_bugfix":    None,
