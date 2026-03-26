@@ -6,7 +6,45 @@ on:
     branches: [main]
 
 jobs:
+  patch-scenario:
+    if: startsWith(github.head_ref, 'quick-submit-')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Patch scenario - add experimental_features docker
+        run: |
+          python3 - <<'PYEOF'
+          import json, glob
+          for path in glob.glob('submissions/*.json'):
+              if 'provenance' in path:
+                  continue
+              with open(path) as f:
+                  data = json.load(f)
+              features = data.get('experimental_features', [])
+              if 'docker' not in features:
+                  features.append('docker')
+                  data['experimental_features'] = features
+                  with open(path, 'w') as f:
+                      json.dump(data, f, indent=2)
+                  print(f"Patched {path}: experimental_features={features}")
+              else:
+                  print(f"Already has docker: {path}")
+          PYEOF
+
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add submissions/*.json
+          git diff --staged --quiet || (git commit -m "patch: enable docker experimental feature" && git push)
+
   run-scenario:
+    needs: patch-scenario
     if: startsWith(github.head_ref, 'quick-submit-')
     uses: RDI-Foundation/agentbeats-leaderboard-template/.github/workflows/quick-submit-runner.yml@v2
     permissions:
