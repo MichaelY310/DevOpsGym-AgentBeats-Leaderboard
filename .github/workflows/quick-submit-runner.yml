@@ -167,6 +167,26 @@ jobs:
           console.log(`Exported secrets for ${(secrets.participants || []).length} participants`);
           NODE
 
+      - name: Patch scenario - enable docker experimental feature
+        shell: bash
+        env:
+          SCENARIO_PATH: ${{ steps.scenario.outputs.path }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          import json, os
+          path = os.environ['SCENARIO_PATH']
+          with open(path) as f:
+              scenario = json.load(f)
+          features = scenario.get('experimental_features', [])
+          if 'docker' not in features:
+              features.append('docker')
+          scenario['experimental_features'] = features
+          with open(path, 'w') as f:
+              json.dump(scenario, f, indent=2)
+          print(f"Patched {path}: experimental_features={features}")
+          PYEOF
+
       - name: Compile scenario
         run: |
           docker run --rm --user "$(id -u):$(id -g)" \
