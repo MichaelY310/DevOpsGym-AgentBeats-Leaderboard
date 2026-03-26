@@ -1,0 +1,22 @@
+{
+  "image_digests": {
+    "/gateway": "ghcr.io/rdi-foundation/agentbeats-gateway@sha256:3f9976889c598092dc4273312ec431cbc48bbe064ff65b5613425f4990bc1d4c",
+    "/green": "ghcr.io/kaijiezhu11/devops-green-agent@sha256:af87cb8011d0f986422c38db1b6c3ef27ce12e9a759c7efd60d92c036da26b50",
+    "/purple_agent": "ghcr.io/kaijiezhu11/devops-claude-agent@sha256:169b71bb22b8406a89d1b2e67c343e0380d87dd9c83e7e391e83ab7621690be4"
+  },
+  "manifest_digests": {
+    "/": "sha256:gucebIscFKnMKVJNYzerWC3yLnwx5IriF99lTbQsoW4=",
+    "/gateway": "sha256:0nK+Cnn/T4UOQIP2JqNrAx8gHGVWjBsCUTBFgYgC44c=",
+    "/green": "sha256:2LdAPslyrMOukUvmjZNX5C/wGh9IIt1aOqEaMpcWVQI=",
+    "/purple_agent": "sha256:KBpHvBCm9z17z7kCQdhcghtsFxLR67e7EAe7bRWYuOA="
+  },
+  "timestamp": "2026-03-26T07:09:46Z",
+  "github_actions": {
+    "run_url": "https://github.com/MichaelY310/DevOpsGym-AgentBeats-Leaderboard/actions/runs/23581770082",
+    "ref": "refs/pull/8/merge",
+    "sha": "54e66b492d2600ddb75fcc853adbc167ec2c9c91",
+    "repository_url": "https://github.com/MichaelY310/DevOpsGym-AgentBeats-Leaderboard",
+    "workflow_ref": "MichaelY310/DevOpsGym-AgentBeats-Leaderboard/.github/workflows/quick-submit.yml@refs/pull/8/merge",
+    "workflow_sha": "54e66b492d2600ddb75fcc853adbc167ec2c9c91"
+  }
+}
